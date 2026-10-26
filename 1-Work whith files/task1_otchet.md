@@ -25,7 +25,9 @@
 - подтверждение удаления созданных в ходе задания объектов;
 - краткое пояснение разницы между абсолютным и относительным путём.
 
-# Отчет по практической работе: Работа в консоли
+# Отчет по практической работе: Работа в консоли (macOS)
+
+> Выполнено на macOS (MacBook Air), оболочка по умолчанию — `zsh`.
 
 ## 1. Переместиться между директориями
 
@@ -55,8 +57,8 @@ cd /
 ```
 
 **Разбор команды и параметров:**
-- **cd** (change directory) — базовая команда Linux для смены текущей рабочей директории.
-- **~** (тильда) — обозначение домашнего каталога текущего пользователя.
+- **cd** (change directory) — базовая команда для смены текущей рабочей директории.
+- **~** (тильда) — обозначение домашнего каталога текущего пользователя (в macOS это `/Users/moismmax`).
 - **/** (слеш в начале) — корневой каталог файловой системы.
 - **..** (две точки) — ссылка на родительскую директорию (на уровень выше).
 - **-** (дефис) — быстрый возврат в каталог, где пользователь находился перед последним переходом.
@@ -78,7 +80,7 @@ ls -l
 ls -la
 ```
 **Разбор параметров:**
-- **-a** (--all) — отображает абсолютно все файлы и папки, включая скрытые (название которых начинается с точки, например `.bashrc`).
+- **-a** (--all) — отображает абсолютно все файлы и папки, включая скрытые (название которых начинается с точки, например `.zshrc`).
 - Комбинация **-la** включает одновременно подробный формат (`-l`) и показ скрытых объектов (`-a`).
 
 ---
@@ -144,7 +146,7 @@ cp lab1_dir/level2/source.txt lab1_dir/copied_file.txt
 mv lab1_dir/copied_file.txt lab1_dir/final_doc.txt
 ```
 **Разбор параметров:**
-- В Linux отдельной команды для переименования файлов нет. Для этого используется `mv`: если указать путь в тот же каталог с новым именем, файл переименовывается.
+- Отдельной команды для переименования в macOS (как и в Linux) нет. Для этого используется `mv`: если указать путь в тот же каталог с новым именем, файл переименовывается.
 
 ---
 
@@ -158,8 +160,8 @@ diff lab1_dir/level2/source.txt lab1_dir/final_doc.txt
 
 **Вывод консоли:**
 ```bash
-moismmax@ubuntu:~$ diff lab1_dir/level2/source.txt lab1_dir/final_doc.txt
-moismmax@ubuntu:~$
+moismmax@MacBookAir ~ % diff lab1_dir/level2/source.txt lab1_dir/final_doc.txt
+moismmax@MacBookAir ~ %
 ```
 **Вывод пустой, так как содержимое файлов полностью идентично.**
 
@@ -173,7 +175,7 @@ sort lab1_dir/final_doc.txt
 ```
 **Вывод консоли:**
 ```bash
-moismmax@ubuntu:~$ sort lab1_dir/final_doc.txt
+moismmax@MacBookAir ~ % sort lab1_dir/final_doc.txt
 апельсин
 банан
 вишня
@@ -188,7 +190,7 @@ sort -r lab1_dir/final_doc.txt
 ```
 **Вывод консоли:**
 ```bash
-moismmax@ubuntu:~$ sort -r lab1_dir/final_doc.txt
+moismmax@MacBookAir ~ % sort -r lab1_dir/final_doc.txt
 яблоко
 вишня
 банан
@@ -210,8 +212,8 @@ find ~/lab1_dir -name "final_doc.txt"
 
 **Вывод консоли:**
 ```bash
-moismmax@ubuntu:~$ find ~/lab1_dir -name "final_doc.txt"
-/home/moismmax/lab1_dir/final_doc.txt
+moismmax@MacBookAir ~ % find ~/lab1_dir -name "final_doc.txt"
+/Users/moismmax/lab1_dir/final_doc.txt
 ```
 
 **Итоговая структура созданных каталогов** (состояние после выполнения п.6–8):
@@ -219,9 +221,14 @@ moismmax@ubuntu:~$ find ~/lab1_dir -name "final_doc.txt"
 tree lab1_dir
 ```
 
+> В macOS утилита `tree` по умолчанию отсутствует. Устанавливается через Homebrew:
+> ```bash
+> brew install tree
+> ```
+
 **Вывод консоли:**
 ```bash
-moismmax@ubuntu:~$ tree lab1_dir
+moismmax@MacBookAir ~ % tree lab1_dir
 lab1_dir
 ├── final_doc.txt
 └── level2
@@ -246,23 +253,23 @@ ls -l ~/lab1_dir
 
 **Вывод консоли:**
 ```bash
-moismmax@ubuntu:~$ rm -ri ~/lab1_dir
-rm: descend into directory '/home/moismmax/lab1_dir'? y
-rm: remove regular file '/home/moismmax/lab1_dir/final_doc.txt'? y
-rm: descend into directory '/home/moismmax/lab1_dir/level2'? y
-rm: descend into directory '/home/moismmax/lab1_dir/level2/level3'? y
-rm: remove regular file '/home/moismmax/lab1_dir/level2/level3/source.txt'? y
-rm: remove directory '/home/moismmax/lab1_dir/level2/level3'? y
-rm: remove directory '/home/moismmax/lab1_dir/level2'? y
-rm: remove directory '/home/moismmax/lab1_dir'? y
-moismmax@ubuntu:~$ ls -l ~/lab1_dir
-ls: cannot access '/home/moismmax/lab1_dir': No such file or directory
+moismmax@MacBookAir ~ % rm -ri ~/lab1_dir
+examine files in directory /Users/moismmax/lab1_dir? y
+remove /Users/moismmax/lab1_dir/final_doc.txt? y
+examine files in directory /Users/moismmax/lab1_dir/level2? y
+examine files in directory /Users/moismmax/lab1_dir/level2/level3? y
+remove /Users/moismmax/lab1_dir/level2/source.txt? y
+remove /Users/moismmax/lab1_dir/level2/level3? y
+remove /Users/moismmax/lab1_dir/level2? y
+remove /Users/moismmax/lab1_dir? y
+moismmax@MacBookAir ~ % ls -l ~/lab1_dir
+ls: /Users/moismmax/lab1_dir: No such file or directory
 ```
 
 ---
 
 ## Разница между абсолютным и относительным путём
 
-- **Абсолютный путь** всегда начинается от корневого каталога (обозначается слешем `/`) и указывает полный маршрут к файлу или папке, который будет работать одинаково независимо от того, в какой директории сейчас находится пользователь. Пример: `/home/moismmax/lab1_dir/final_doc.txt`.
+- **Абсолютный путь** всегда начинается от корневого каталога (обозначается слешем `/`) и указывает полный маршрут к файлу или папке, который будет работать одинаково независимо от того, в какой директории сейчас находится пользователь. Пример: `/Users/moismmax/lab1_dir/final_doc.txt`.
 
-- **Относительный путь** строится относительно текущей рабочей директории пользователя. Он никогда не начинается со слеша. Пример: если мы уже находимся в папке `/home/moismmax`, то относительный путь к тому же файлу будет выглядеть просто как `lab1_dir/final_doc.txt`.
+- **Относительный путь** строится относительно текущей рабочей директории пользователя. Он никогда не начинается со слеша. Пример: если мы уже находимся в папке `/Users/moismmax`, то относительный путь к тому же файлу будет выглядеть просто как `lab1_dir/final_doc.txt`.
